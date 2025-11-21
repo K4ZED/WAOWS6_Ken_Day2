@@ -4,33 +4,32 @@ import numpy as np
 
 cluster_bp = Blueprint("cluster", __name__)
 
-kmeans = joblib.load("./models/cluster_model.pkl")
-scaler = joblib.load("./models/scaler_cluster.pkl")
+scaler_cluster = joblib.load("./models/scaler_cluster.pkl")
+cluster_model = joblib.load("./models/cluster_model.pkl")
 
 
 @cluster_bp.route("/", methods=["POST"])
 def cluster():
     try:
-        data = request.get_json()
+        data = request.get_json() or {}
 
         required_fields = ["Age", "AnnualIncome", "SpendingScore"]
         for field in required_fields:
             if field not in data:
                 return jsonify({"error": f"Missing required field: {field}"}), 400
 
-        X = np.array(
+        X_raw = np.array(
             [
-                data["Age"],
-                data["AnnualIncome"],
-                data["SpendingScore"],
+                float(data["Age"]),
+                float(data["AnnualIncome"]),
+                float(data["SpendingScore"]),
             ]
         ).reshape(1, -1)
 
-        X_scaled = scaler.transform(X)
-        cluster_label = int(kmeans.predict(X_scaled)[0])
+        X_scaled = scaler_cluster.transform(X_raw)
+        label = int(cluster_model.predict(X_scaled)[0])
 
-        return jsonify({"success": True, "data": cluster_label})
-
+        return jsonify({"success": True, "cluster": label})
     except Exception as e:
         print("Cluster error:", e)
-        return jsonify({"error": "Failed to cluster"}), 500
+        return jsonify({"error": "Failed to find cluster"}), 500

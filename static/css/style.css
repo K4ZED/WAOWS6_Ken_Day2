@@ -435,6 +435,21 @@ body::before {
     font-size: 2rem;
 }
 
+.card-icon-bi {
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.index-card:hover .card-icon-bi {
+    background: linear-gradient(135deg, #6366f1, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .feature-tag {
     display: inline-flex;
     align-items: center;
@@ -869,41 +884,6 @@ body::before {
 }
 
 .predict-section {
-    padding: 4rem 0 5rem;
-}
-
-.predict-card {
-    border-radius: 24px;
-    border: none;
-    padding: 2.5rem 2.2rem;
-    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.25);
-    background: #ffffff;
-}
-
-.predict-header {
-    margin-bottom: 1.8rem;
-}
-
-.predict-title {
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 0.6rem;
-}
-
-.predict-subtitle {
-    font-size: 0.95rem;
-    color: #6b7280;
-    margin: 0;
-}
-
-.predict-submit {
-    padding: 0.6rem 2.2rem;
-    border-radius: 999px;
-    font-weight: 600;
-}
-
-.predict-section {
     padding: 5rem 0 6rem;
 }
 
@@ -949,34 +929,6 @@ body::before {
     margin: 0 auto;
 }
 
-.predict-submit {
-    padding: 0.65rem 2.3rem;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 0.95rem;
-}
-
-.btn-sample {
-    border-radius: 999px;
-    padding: 0.45rem 1.4rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    background: rgba(79, 70, 229, 0.1);
-    border: 1px solid rgba(79, 70, 229, 0.25);
-    color: #4f46e5;
-    transition: 0.25s;
-}
-
-.btn-sample:hover {
-    background: rgba(79, 70, 229, 0.2);
-}
-
-/* ========================================
-   PREDICT PAGE - Additional Styles
-   Add this to your style.css
-   ======================================== */
-
-/* Input Group Custom */
 .input-group-custom {
     position: relative;
 }
@@ -1027,7 +979,6 @@ body::before {
     font-size: 0.875rem;
 }
 
-/* Submit Button Enhanced */
 .predict-submit {
     padding: 0.85rem 2.8rem;
     border-radius: 999px;
@@ -1051,7 +1002,6 @@ body::before {
     cursor: not-allowed;
 }
 
-/* Sample Button Enhanced */
 .btn-sample {
     border-radius: 999px;
     padding: 0.55rem 1.6rem;
@@ -1060,7 +1010,7 @@ body::before {
     background: rgba(79, 70, 229, 0.08);
     border: 1.5px solid rgba(79, 70, 229, 0.2);
     color: #4f46e5;
-    transition: all 0.25s ease;
+    transition: 0.25s ease;
 }
 
 .btn-sample:hover {
@@ -1076,7 +1026,6 @@ body::before {
     color: #16a34a;
 }
 
-/* Result Card */
 .result-card {
     display: flex;
     align-items: center;
@@ -1149,7 +1098,6 @@ body::before {
     letter-spacing: -0.02em;
 }
 
-/* Error Card */
 .error-card {
     display: flex;
     align-items: center;
@@ -1203,7 +1151,6 @@ body::before {
     color: #b91c1c;
 }
 
-/* Responsive adjustments */
 @media (max-width: 575.98px) {
     .predict-card {
         padding: 2rem 1.5rem;
@@ -1223,4 +1170,78 @@ body::before {
     .predict-submit {
         width: 100%;
     }
+}
+
+.cluster-section {
+    padding: 5rem 0 6rem;
+}
+
+.cluster-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 2.4rem 2.2rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.25);
+}
+
+.cluster-plot-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 1.6rem 1.6rem 1.4rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+}
+
+.cluster-plot-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.9rem;
+}
+
+.cluster-plot-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #020617;
+}
+
+.cluster-plot-subtitle {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.cluster-plot-img {
+    border-radius: 18px;
+    width: 100%;
+}
+
+.sample-dropdown {
+    border-radius: 999px;
+    padding: 0.85rem 1.4rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background: rgba(79, 70, 229, 0.08);
+    border: 1.5px solid rgba(79, 70, 229, 0.2);
+    color: #4f46e5;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    width: auto;
+    flex: 0 0 auto;
+}
+
+.sample-dropdown:hover {
+    background: rgba(79, 70, 229, 0.15);
+    border-color: rgba(79, 70, 229, 0.35);
+}
+
+.sample-dropdown:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    outline: none;
+}
+
+.result-desc {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-top: 0.35rem;
+    letter-spacing: -0.01em;
 }

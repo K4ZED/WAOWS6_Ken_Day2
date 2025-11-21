@@ -1,41 +1,215 @@
 {% extends "base.html" %}
 
-{% block title %}Cluster · WAOW S6{% endblock %}
+{% block title %}Customer Clustering - WAOW S6{% endblock %}
 
 {% block content %}
-<section class="container py-5">
-    <div class="row g-4 align-items-stretch">
-        <div class="col-lg-5">
-            <div class="card p-4 h-100 shadow-lg" style="border-radius: 18px;">
-                <h1 class="mb-3 text-center" style="font-size:1.6rem;">Customer Clustering</h1>
-                <p class="text-muted text-center mb-4" style="font-size:0.9rem;">
-                    Enter customer profile to see which cluster they belong to.
-                </p>
-                <form id="clusterForm">
-                    <div class="mb-3">
-                        <label class="form-label">Age</label>
-                        <input type="number" step="1" class="form-control" name="Age" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Annual Income (k$)</label>
-                        <input type="number" step="1" class="form-control" name="AnnualIncome" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Spending Score (1-100)</label>
-                        <input type="number" step="1" class="form-control" name="SpendingScore" required>
-                    </div>
-                    <div class="text-center mt-3">
-                        <button type="submit" class="btn btn-primary px-4 py-2">Find Cluster</button>
-                    </div>
-                </form>
-                <div id="clusterResult" class="alert alert-info mt-4 text-center d-none"></div>
-            </div>
-        </div>
+<section class="cluster-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Header -->
+                <div class="text-center mb-5">
+                    <span class="predict-badge">
+                        <i class="bi bi-diagram-3 me-2"></i>
+                        Machine Learning
+                    </span>
+                    <h1 class="predict-title">Customer Clustering Analysis</h1>
+                    <p class="predict-subtitle">
+                        Discover customer segments using unsupervised machine learning. Input customer data to identify their cluster group.
+                    </p>
+                </div>
 
-        <div class="col-lg-7">
-            <div class="card p-3 h-100 shadow-lg" style="border-radius: 18px;">
-                <img src="{{ url_for('static', filename='img/cluster_visualization.png') }}"
-                     class="img-fluid rounded" alt="Cluster Visualization">
+                <div class="row g-4">
+                    <!-- Form Card -->
+                    <div class="col-lg-7">
+                        <div class="cluster-card">
+                            <form id="clusterForm">
+                                <div class="row g-3">
+                                    <!-- Age Input -->
+                                    <div class="col-12">
+                                        <div class="input-group-custom">
+                                            <label for="Age" class="form-label">
+                                                <i class="bi bi-person-fill me-1"></i>
+                                                Age
+                                                <span class="label-hint">(years)</span>
+                                            </label>
+                                            <input 
+                                                type="number" 
+                                                class="form-control" 
+                                                id="Age" 
+                                                name="Age" 
+                                                placeholder="e.g., 32"
+                                                required
+                                                min="18"
+                                                max="100"
+                                                step="1"
+                                            >
+                                        </div>
+                                    </div>
+
+                                    <!-- Annual Income Input -->
+                                    <div class="col-12">
+                                        <div class="input-group-custom">
+                                            <label for="AnnualIncome" class="form-label">
+                                                <i class="bi bi-cash-stack me-1"></i>
+                                                Annual Income
+                                                <span class="label-hint">(in thousands)</span>
+                                            </label>
+                                            <input 
+                                                type="number" 
+                                                class="form-control" 
+                                                id="AnnualIncome" 
+                                                name="AnnualIncome" 
+                                                placeholder="e.g., 60"
+                                                required
+                                                min="15"
+                                                max="150"
+                                                step="0.01"
+                                            >
+                                        </div>
+                                    </div>
+
+                                    <!-- Spending Score Input -->
+                                    <div class="col-12">
+                                        <div class="input-group-custom">
+                                            <label for="SpendingScore" class="form-label">
+                                                <i class="bi bi-graph-up me-1"></i>
+                                                Spending Score
+                                                <span class="label-hint">(1-100)</span>
+                                            </label>
+                                            <input 
+                                                type="number" 
+                                                class="form-control" 
+                                                id="SpendingScore" 
+                                                name="SpendingScore" 
+                                                placeholder="e.g., 65"
+                                                required
+                                                min="1"
+                                                max="100"
+                                                step="1"
+                                            >
+                                        </div>
+                                    </div>
+
+                                    <!-- Buttons -->
+                                    <div class="col-12">
+                                        <div class="d-flex flex-wrap gap-2 align-items-center">
+                                            <button type="submit" class="btn btn-primary predict-submit" id="clusterSubmitBtn">
+                                                <span class="btn-text">
+                                                    <i class="bi bi-stars me-2"></i>
+                                                    Find Cluster
+                                                </span>
+                                                <span class="btn-loading d-none">
+                                                    <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                                                    Processing...
+                                                </span>
+                                            </button>
+                                            <select class="form-select sample-dropdown" id="sampleClusterSelect">
+                                                <option value="">Load Sample...</option>
+                                                <option value="0">Cluster 0 — Careful Spenders</option>
+                                                <option value="1">Cluster 1 — Target (VIP)</option>
+                                                <option value="2">Cluster 2 — Sensible</option>
+                                                <option value="3">Cluster 3 — Potential</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Result Card -->
+                                    <div class="col-12 d-none" id="clusterResultCard">
+                                        <div class="result-card show">
+                                            <div class="result-icon">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                            </div>
+                                            <div class="result-content">
+                                                <div class="result-label">Customer Cluster</div>
+                                                <div class="result-value">
+                                                    Cluster <span id="clusterResultValue">0</span>
+                                                </div>
+                                                <div class="result-desc" id="clusterResultDesc"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Error Card -->
+                                    <div class="col-12 d-none" id="clusterErrorCard">
+                                        <div class="error-card">
+                                            <div class="error-icon">
+                                                <i class="bi bi-exclamation-triangle-fill"></i>
+                                            </div>
+                                            <div class="error-content">
+                                                <div class="error-label">Error</div>
+                                                <div class="error-message" id="clusterErrorMessage">
+                                                    Something went wrong
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Visualization Card -->
+                    <div class="col-lg-5">
+                        <div class="cluster-plot-card h-100">
+                            <div class="cluster-plot-header">
+                                <div class="cluster-plot-title">
+                                    <i class="bi bi-pie-chart-fill me-2"></i>
+                                    Cluster Visualization
+                                </div>
+                                <div class="cluster-plot-subtitle">
+                                    3D representation of customer segments
+                                </div>
+                            </div>
+                            <img 
+                                src="{{ url_for('static', filename='img/cluster_visualization.png') }}" 
+                                alt="Cluster Visualization" 
+                                class="cluster-plot-img"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Cards -->
+                    <div class="row g-4 mt-3">
+                        <div class="col-md-4">
+                            <div class="index-card">
+                                <div class="card-icon-wrapper">
+                                    <i class="bi bi-bullseye card-icon-bi"></i>
+                                </div>
+                                <span class="feature-tag tag-blue">Insight</span>
+                                <h5 class="index-card-title">Customer Segmentation</h5>
+                                <p class="index-card-text">
+                                    Machine learning algorithm groups customers based on age, income, and spending behavior patterns.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="index-card">
+                                <div class="card-icon-wrapper">
+                                    <i class="bi bi-diagram-3-fill card-icon-bi"></i>
+                                </div>
+                                <span class="feature-tag tag-green">Algorithm</span>
+                                <h5 class="index-card-title">K-Means Clustering</h5>
+                                <p class="index-card-text">
+                                    Unsupervised learning technique that identifies natural groupings in customer data for targeted marketing.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="index-card">
+                                <div class="card-icon-wrapper">
+                                    <i class="bi bi-lightbulb-fill card-icon-bi"></i>
+                                </div>
+                                <span class="feature-tag tag-purple">Application</span>
+                                <h5 class="index-card-title">Business Value</h5>
+                                <p class="index-card-text">
+                                    Enable personalized marketing strategies, optimize product offerings, and improve customer retention.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
