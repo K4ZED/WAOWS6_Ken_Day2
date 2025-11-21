@@ -1,1 +1,47 @@
-<html><body>Cluster page</body></html>
+{% extends "base.html" %}
+
+{% block title %}Cluster · WAOW S6{% endblock %}
+
+{% block content %}
+<section class="container py-5">
+    <div class="row g-4 align-items-stretch">
+        <div class="col-lg-5">
+            <div class="card p-4 h-100 shadow-lg" style="border-radius: 18px;">
+                <h1 class="mb-3 text-center" style="font-size:1.6rem;">Customer Clustering</h1>
+                <p class="text-muted text-center mb-4" style="font-size:0.9rem;">
+                    Enter customer profile to see which cluster they belong to.
+                </p>
+                <form id="clusterForm">
+                    <div class="mb-3">
+                        <label class="form-label">Age</label>
+                        <input type="number" step="1" class="form-control" name="Age" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Annual Income (k$)</label>
+                        <input type="number" step="1" class="form-control" name="AnnualIncome" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Spending Score (1-100)</label>
+                        <input type="number" step="1" class="form-control" name="SpendingScore" required>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-primary px-4 py-2">Find Cluster</button>
+                    </div>
+                </form>
+                <div id="clusterResult" class="alert alert-info mt-4 text-center d-none"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <div class="card p-3 h-100 shadow-lg" style="border-radius: 18px;">
+                <img src="{{ url_for('static', filename='img/cluster_visualization.png') }}"
+                     class="img-fluid rounded" alt="Cluster Visualization">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/cluster.js') }}"></script>
+{% endblock %}

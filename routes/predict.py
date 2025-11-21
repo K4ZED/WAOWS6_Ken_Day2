@@ -29,14 +29,14 @@ def predict():
 
         X = np.array(
             [
-                data["MedInc"],
-                data["HouseAge"],
-                data["AveRooms"],
-                data["AveBedrms"],
-                data["Population"],
-                data["AveOccup"],
-                data["Latitude"],
-                data["Longitude"],
+                float(data["MedInc"]),
+                float(data["HouseAge"]),
+                float(data["AveRooms"]),
+                float(data["AveBedrms"]),
+                float(data["Population"]),
+                float(data["AveOccup"]),
+                float(data["Latitude"]),
+                float(data["Longitude"]),
             ]
         ).reshape(1, -1)
 

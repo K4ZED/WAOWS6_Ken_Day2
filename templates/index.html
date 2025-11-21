@@ -1,1 +1,213 @@
-<html><body>Index page</body></html>
+{% extends "base.html" %}
+
+{% block title %}Home · WAOW S6{% endblock %}
+
+{% block content %}
+<section class="hero container">
+    <div class="row align-items-center justify-content-between g-4">
+        <div class="col-lg-5">
+            <div class="hero-badge">
+                <i class="bi bi-calendar3 me-2"></i>Day 2 · Machine Learning x Flask
+            </div>
+            <h1 class="hero-title">AI Powered Web App</h1>
+            <p class="hero-subtitle">
+                Build, train, and deploy your own machine learning models as production-ready web applications with real-time predictions.
+            </p>
+            <div class="hero-actions">
+                <a href="/predict-page" class="btn btn-primary btn-hero">
+                    <i class="bi bi-house-fill me-2"></i>House Price Prediction
+                </a>
+                <a href="/cluster-page" class="btn btn-outline-light btn-hero-alt">
+                    <i class="bi bi-people-fill me-2"></i>Customer Clustering
+                </a>
+            </div>
+            <div class="hero-meta">
+                <span class="meta-pill">
+                    <i class="bi bi-code-slash me-1"></i>Python
+                </span>
+                <span class="meta-pill">
+                    <i class="bi bi-globe me-1"></i>Flask
+                </span>
+                <span class="meta-pill">
+                    <i class="bi bi-graph-up me-1"></i>Scikit-Learn
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="hero-panel">
+                <div class="hero-panel-header">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                    <span class="hero-panel-title">POST /api/predict</span>
+                </div>
+                <pre class="hero-code"><code>{
+  "MedInc": 6.8,
+  "HouseAge": 27,
+  "AveRooms": 9.33,
+  "AveBedrms": 0.97,
+  "Population": 2401,
+  "AveOccup": 1.4,
+  "Latitude": 34.0,
+  "Longitude": -118.2
+}</code></pre>
+                <div class="hero-panel-footer">
+                    <span class="hero-status-dot"></span>
+                    <span class="hero-status-text">Model ready · 99.9% uptime</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="index-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Build production-ready ML apps in three simple steps</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="index-card">
+                    <div class="card-icon-wrapper">
+                        <i class="bi bi-graph-up-arrow card-icon text-primary"></i>
+                    </div>
+                    <div class="feature-tag tag-blue">Step 1</div>
+                    <h3 class="index-card-title">Train Models</h3>
+                    <p class="index-card-text">
+                        Build regression and clustering models in notebooks with clear EDA, preprocessing, and evaluation metrics.
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="bi bi-check-circle-fill me-2"></i>Exploratory Data Analysis</li>
+                        <li><i class="bi bi-check-circle-fill me-2"></i>Feature Engineering</li>
+                        <li><i class="bi bi-check-circle-fill me-2"></i>Model Evaluation</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="index-card">
+                    <div class="card-icon-wrapper">
+                        <i class="bi bi-cloud-arrow-up card-icon text-success"></i>
+                    </div>
+                    <div class="feature-tag tag-green">Step 2</div>
+                    <h3 class="index-card-title">Expose APIs</h3>
+                    <p class="index-card-text">
+                        Load the trained models in Flask and expose them as REST endpoints ready to be consumed by any client.
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="bi bi-check-circle-fill me-2"></i>RESTful API Design</li>
+                        <li><i class="bi bi-check-circle-fill me-2"></i>Model Serialization</li>
+                        <li><i class="bi bi-check-circle-fill me-2"></i>Error Handling</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="index-card">
+                    <div class="card-icon-wrapper">
+                        <i class="bi bi-palette card-icon text-info"></i>
+                    </div>
+                    <div class="feature-tag tag-purple">Step 3</div>
+                    <h3 class="index-card-title">Connect the UI</h3>
+                    <p class="index-card-text">
+                        Use simple HTML and JavaScript to send requests to the APIs and show predictions in real time.
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="bi bi-check-circle-fill me-2"></i>Interactive Forms</li>
+                        <li><i class="bi bi-check-circle-fill me-2"></i>Real-time Updates</li>
+                        <li><i class="bi bi-check-circle-fill me-2"></i>Result Visualization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="index-endpoints">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="index-endpoints-title">Available Endpoints</h2>
+            <p class="section-text-dark">Two powerful ML models ready to serve predictions</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <div class="endpoint-icon-wrapper bg-primary-soft">
+                            <i class="bi bi-house-door-fill endpoint-icon"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="endpoint-pill">POST /api/predict</div>
+                            <span class="endpoint-badge badge-primary">Regression Model</span>
+                        </div>
+                    </div>
+                    <p class="endpoint-desc">
+                        Takes 8 numerical features and returns the predicted median house value with confidence score.
+                    </p>
+                    <div class="endpoint-details">
+                        <div class="detail-label">Input Features</div>
+                        <div class="detail-tags">
+                            <span class="detail-tag">MedInc</span>
+                            <span class="detail-tag">HouseAge</span>
+                            <span class="detail-tag">AveRooms</span>
+                            <span class="detail-tag">+5 more</span>
+                        </div>
+                    </div>
+                    <a href="/predict-page" class="endpoint-link">
+                        Try it now <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-5">
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <div class="endpoint-icon-wrapper bg-success-soft">
+                            <i class="bi bi-people-fill endpoint-icon"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="endpoint-pill">POST /api/cluster</div>
+                            <span class="endpoint-badge badge-success">Clustering Model</span>
+                        </div>
+                    </div>
+                    <p class="endpoint-desc">
+                        Takes age, annual income, and spending score to identify customer segments and behavior patterns.
+                    </p>
+                    <div class="endpoint-details">
+                        <div class="detail-label">Input Features</div>
+                        <div class="detail-tags">
+                            <span class="detail-tag">Age</span>
+                            <span class="detail-tag">Annual Income</span>
+                            <span class="detail-tag">Spending Score</span>
+                        </div>
+                    </div>
+                    <a href="/cluster-page" class="endpoint-link">
+                        Try it now <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="cta-badge">Get Started</div>
+                <h2 class="cta-title">Ready to Build Your Own?</h2>
+                <p class="cta-subtitle">
+                    Choose a model to explore or dive into the implementation details
+                </p>
+                <div class="cta-actions">
+                    <a href="/predict-page" class="btn btn-cta-primary">
+                        <i class="bi bi-play-fill me-2"></i>Try House Prediction
+                    </a>
+                    <a href="/cluster-page" class="btn btn-cta-secondary">
+                        <i class="bi bi-play-fill me-2"></i>Try Clustering
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
