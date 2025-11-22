@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block title %}House Price Prediction - WAOW S6{% endblock %}
 
 {% block content %}
@@ -7,7 +6,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <!-- Header -->
                 <div class="text-center mb-5">
                     <span class="predict-badge">
                         <i class="bi bi-graph-up me-2"></i>
@@ -19,11 +17,9 @@
                     </p>
                 </div>
 
-                <!-- Main Card -->
                 <div class="predict-card">
                     <form id="predictForm">
                         <div class="row g-3">
-                            <!-- MedInc Input -->
                             <div class="col-md-6">
                                 <div class="input-group-custom">
                                     <label for="MedInc" class="form-label">
@@ -31,20 +27,10 @@
                                         Median Income
                                         <span class="label-hint">(in $10,000s)</span>
                                     </label>
-                                    <input 
-                                        type="number" 
-                                        class="form-control" 
-                                        id="MedInc" 
-                                        name="MedInc" 
-                                        placeholder="e.g., 6.8"
-                                        required
-                                        step="0.01"
-                                        min="0"
-                                    >
+                                    <input type="number" class="form-control" id="MedInc" name="MedInc" placeholder="e.g., 6.8" required step="0.01" min="0">
                                 </div>
                             </div>
 
-                            <!-- HouseAge Input -->
                             <div class="col-md-6">
                                 <div class="input-group-custom">
                                     <label for="HouseAge" class="form-label">
@@ -52,20 +38,10 @@
                                         House Age
                                         <span class="label-hint">(years)</span>
                                     </label>
-                                    <input 
-                                        type="number" 
-                                        class="form-control" 
-                                        id="HouseAge" 
-                                        name="HouseAge" 
-                                        placeholder="e.g., 27"
-                                        required
-                                        step="1"
-                                        min="0"
-                                    >
+                                    <input type="number" class="form-control" id="HouseAge" name="HouseAge" placeholder="e.g., 27" required step="1" min="0">
                                 </div>
                             </div>
 
-                            <!-- AveRooms Input -->
                             <div class="col-md-6">
                                 <div class="input-group-custom">
                                     <label for="AveRooms" class="form-label">
@@ -73,20 +49,10 @@
                                         Average Rooms
                                         <span class="label-hint">(per household)</span>
                                     </label>
-                                    <input 
-                                        type="number" 
-                                        class="form-control" 
-                                        id="AveRooms" 
-                                        name="AveRooms" 
-                                        placeholder="e.g., 9.33"
-                                        required
-                                        step="0.01"
-                                        min="0"
-                                    >
+                                    <input type="number" class="form-control" id="AveRooms" name="AveRooms" placeholder="e.g., 9.33" required step="0.01" min="0">
                                 </div>
                             </div>
 
-                            <!-- AveBedrms Input -->
                             <div class="col-md-6">
                                 <div class="input-group-custom">
                                     <label for="AveBedrms" class="form-label">
@@ -94,20 +60,10 @@
                                         Average Bedrooms
                                         <span class="label-hint">(per household)</span>
                                     </label>
-                                    <input 
-                                        type="number" 
-                                        class="form-control" 
-                                        id="AveBedrms" 
-                                        name="AveBedrms" 
-                                        placeholder="e.g., 0.97"
-                                        required
-                                        step="0.01"
-                                        min="0"
-                                    >
+                                    <input type="number" class="form-control" id="AveBedrms" name="AveBedrms" placeholder="e.g., 0.97" required step="0.01" min="0">
                                 </div>
                             </div>
 
-                            <!-- Population Input -->
                             <div class="col-md-6">
                                 <div class="input-group-custom">
                                     <label for="Population" class="form-label">
@@ -115,20 +71,10 @@
                                         Population
                                         <span class="label-hint">(block group)</span>
                                     </label>
-                                    <input 
-                                        type="number" 
-                                        class="form-control" 
-                                        id="Population" 
-                                        name="Population" 
-                                        placeholder="e.g., 2401"
-                                        required
-                                        step="1"
-                                        min="0"
-                                    >
+                                    <input type="number" class="form-control" id="Population" name="Population" placeholder="e.g., 2401" required step="1" min="0">
                                 </div>
                             </div>
 
-                            <!-- AveOccup Input -->
                             <div class="col-md-6">
                                 <div class="input-group-custom">
                                     <label for="AveOccup" class="form-label">
@@ -136,20 +82,10 @@
                                         Average Occupancy
                                         <span class="label-hint">(per household)</span>
                                     </label>
-                                    <input 
-                                        type="number" 
-                                        class="form-control" 
-                                        id="AveOccup" 
-                                        name="AveOccup" 
-                                        placeholder="e.g., 1.4"
-                                        required
-                                        step="0.01"
-                                        min="0"
-                                    >
+                                    <input type="number" class="form-control" id="AveOccup" name="AveOccup" placeholder="e.g., 1.4" required step="0.01" min="0">
                                 </div>
                             </div>
 
-                            <!-- Latitude Input -->
                             <div class="col-md-6">
                                 <div class="input-group-custom">
                                     <label for="Latitude" class="form-label">
@@ -157,19 +93,10 @@
                                         Latitude
                                         <span class="label-hint">(location)</span>
                                     </label>
-                                    <input 
-                                        type="number" 
-                                        class="form-control" 
-                                        id="Latitude" 
-                                        name="Latitude" 
-                                        placeholder="e.g., 34.0"
-                                        required
-                                        step="0.01"
-                                    >
+                                    <input type="number" class="form-control" id="Latitude" name="Latitude" placeholder="e.g., 34.0" required step="0.01">
                                 </div>
                             </div>
 
-                            <!-- Longitude Input -->
                             <div class="col-md-6">
                                 <div class="input-group-custom">
                                     <label for="Longitude" class="form-label">
@@ -177,19 +104,10 @@
                                         Longitude
                                         <span class="label-hint">(location)</span>
                                     </label>
-                                    <input 
-                                        type="number" 
-                                        class="form-control" 
-                                        id="Longitude" 
-                                        name="Longitude" 
-                                        placeholder="e.g., -118.2"
-                                        required
-                                        step="0.01"
-                                    >
+                                    <input type="number" class="form-control" id="Longitude" name="Longitude" placeholder="e.g., -118.2" required step="0.01">
                                 </div>
                             </div>
 
-                            <!-- Buttons -->
                             <div class="col-12">
                                 <div class="d-flex flex-wrap gap-2 justify-content-center">
                                     <button type="submit" class="btn btn-primary predict-submit" id="submitBtn">
@@ -209,20 +127,47 @@
                                 </div>
                             </div>
 
-                            <!-- Result Card -->
                             <div class="col-12 d-none" id="result">
-                                <div class="result-card show">
-                                    <div class="result-icon">
-                                        <i class="bi bi-house-check-fill"></i>
+                                <div class="result-card-enhanced">
+                                    <div class="result-header">
+                                        <div class="result-icon">
+                                            <i class="bi bi-house-check-fill"></i>
+                                        </div>
+                                        <div class="result-content">
+                                            <div class="result-label">Predicted House Value</div>
+                                            <div class="result-value" id="resultValue">$0.00</div>
+                                            <span class="category-badge" id="categoryBadge">
+                                                <i class="bi bi-house me-1"></i>Budget-Friendly
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div class="result-content">
-                                        <div class="result-label">Predicted House Value</div>
-                                        <div class="result-value" id="resultValue">$0.00</div>
+
+                                    <div class="gauge-container">
+                                        <div class="gauge-labels">
+                                            <span>$0</span>
+                                            <span id="gaugeLabel">Mid-Range</span>
+                                            <span>$500k+</span>
+                                        </div>
+                                        <div class="gauge-track">
+                                            <div class="gauge-bar" id="gaugeBar"></div>
+                                        </div>
+                                        <div class="gauge-markers">
+                                            <span>Budget</span>
+                                            <span>Mid-Range</span>
+                                            <span>Premium</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="recommendation-section">
+                                        <div class="recommendation-header">
+                                            <i class="bi bi-lightbulb-fill me-2"></i>
+                                            Investment Tips
+                                        </div>
+                                        <ul class="tips-list" id="tipsList"></ul>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Error Card -->
                             <div class="col-12 d-none" id="errorResult">
                                 <div class="error-card">
                                     <div class="error-icon">
@@ -238,7 +183,6 @@
                     </form>
                 </div>
 
-                <!-- Info Cards -->
                 <div class="row g-4 mt-3">
                     <div class="col-md-4">
                         <div class="index-card">

@@ -7,7 +7,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <!-- Header -->
                 <div class="text-center mb-5">
                     <span class="predict-badge">
                         <i class="bi bi-diagram-3 me-2"></i>
@@ -20,12 +19,10 @@
                 </div>
 
                 <div class="row g-4">
-                    <!-- Form Card -->
                     <div class="col-lg-7">
                         <div class="cluster-card">
                             <form id="clusterForm">
                                 <div class="row g-3">
-                                    <!-- Age Input -->
                                     <div class="col-12">
                                         <div class="input-group-custom">
                                             <label for="Age" class="form-label">
@@ -47,7 +44,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Annual Income Input -->
                                     <div class="col-12">
                                         <div class="input-group-custom">
                                             <label for="AnnualIncome" class="form-label">
@@ -69,7 +65,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Spending Score Input -->
                                     <div class="col-12">
                                         <div class="input-group-custom">
                                             <label for="SpendingScore" class="form-label">
@@ -91,7 +86,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Buttons -->
                                     <div class="col-12">
                                         <div class="d-flex flex-wrap gap-2 align-items-center">
                                             <button type="submit" class="btn btn-primary predict-submit" id="clusterSubmitBtn">
@@ -114,23 +108,54 @@
                                         </div>
                                     </div>
 
-                                    <!-- Result Card -->
                                     <div class="col-12 d-none" id="clusterResultCard">
-                                        <div class="result-card show">
-                                            <div class="result-icon">
-                                                <i class="bi bi-check-circle-fill"></i>
-                                            </div>
-                                            <div class="result-content">
-                                                <div class="result-label">Customer Cluster</div>
-                                                <div class="result-value">
-                                                    Cluster <span id="clusterResultValue">0</span>
+                                        <div class="cluster-result-enhanced">
+                                            <div class="cluster-result-header">
+                                                <div class="result-icon">
+                                                    <i class="bi bi-check-circle-fill"></i>
                                                 </div>
-                                                <div class="result-desc" id="clusterResultDesc"></div>
+                                                <div class="result-content">
+                                                    <div class="result-label">Customer Cluster</div>
+                                                    <div class="result-value">
+                                                        Cluster <span id="clusterResultValue">0</span>
+                                                    </div>
+                                                    <div class="result-desc" id="clusterResultDesc"></div>
+                                                </div>
+                                                <div class="cluster-badge" id="clusterBadge">Identified</div>
+                                            </div>
+
+                                            <div class="profile-section">
+                                                <div class="section-title">
+                                                    <i class="bi bi-person-badge-fill me-2"></i>
+                                                    Customer Profile
+                                                </div>
+                                                <div class="profile-grid" id="customerProfile">
+                                                    <div class="profile-item">
+                                                        <span class="profile-label"><i class="bi bi-activity me-1"></i>Behavior</span>
+                                                        <span class="profile-value">Loading...</span>
+                                                    </div>
+                                                    <div class="profile-item">
+                                                        <span class="profile-label"><i class="bi bi-heart me-1"></i>Preference</span>
+                                                        <span class="profile-value">Loading...</span>
+                                                    </div>
+                                                    <div class="profile-item">
+                                                        <span class="profile-label"><i class="bi bi-person me-1"></i>Demographic</span>
+                                                        <span class="profile-value">Loading...</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="strategies-section">
+                                                <div class="section-title">
+                                                    <i class="bi bi-bullseye me-2"></i>
+                                                    Recommended Marketing Strategies
+                                                </div>
+                                                <div class="strategies-grid" id="marketingStrategies">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Error Card -->
                                     <div class="col-12 d-none" id="clusterErrorCard">
                                         <div class="error-card">
                                             <div class="error-icon">
@@ -149,9 +174,8 @@
                         </div>
                     </div>
 
-                    <!-- Visualization Card -->
                     <div class="col-lg-5">
-                        <div class="cluster-plot-card h-100">
+                        <div class="cluster-plot-card">
                             <div class="cluster-plot-header">
                                 <div class="cluster-plot-title">
                                     <i class="bi bi-pie-chart-fill me-2"></i>
@@ -167,46 +191,59 @@
                                 class="cluster-plot-img"
                             >
                         </div>
+
+                        <div class="cluster-chart-card d-none" id="comparisonChartCard">
+                            <div class="cluster-plot-header">
+                                <div class="cluster-plot-title">
+                                    <i class="bi bi-bar-chart-fill me-2"></i>
+                                    Input vs Cluster Average
+                                </div>
+                                <div class="cluster-plot-subtitle">
+                                    Compare your input with cluster characteristics
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="comparisonChart"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Info Cards -->
-                    <div class="row g-4 mt-3">
-                        <div class="col-md-4">
-                            <div class="index-card">
-                                <div class="card-icon-wrapper">
-                                    <i class="bi bi-bullseye card-icon-bi"></i>
-                                </div>
-                                <span class="feature-tag tag-blue">Insight</span>
-                                <h5 class="index-card-title">Customer Segmentation</h5>
-                                <p class="index-card-text">
-                                    Machine learning algorithm groups customers based on age, income, and spending behavior patterns.
-                                </p>
+                <div class="row g-4 mt-3">
+                    <div class="col-md-4">
+                        <div class="index-card">
+                            <div class="card-icon-wrapper">
+                                <i class="bi bi-bullseye card-icon-bi"></i>
                             </div>
+                            <span class="feature-tag tag-blue">Insight</span>
+                            <h5 class="index-card-title">Customer Segmentation</h5>
+                            <p class="index-card-text">
+                                Machine learning algorithm groups customers based on age, income, and spending behavior patterns.
+                            </p>
                         </div>
-                        <div class="col-md-4">
-                            <div class="index-card">
-                                <div class="card-icon-wrapper">
-                                    <i class="bi bi-diagram-3-fill card-icon-bi"></i>
-                                </div>
-                                <span class="feature-tag tag-green">Algorithm</span>
-                                <h5 class="index-card-title">K-Means Clustering</h5>
-                                <p class="index-card-text">
-                                    Unsupervised learning technique that identifies natural groupings in customer data for targeted marketing.
-                                </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="index-card">
+                            <div class="card-icon-wrapper">
+                                <i class="bi bi-diagram-3-fill card-icon-bi"></i>
                             </div>
+                            <span class="feature-tag tag-green">Algorithm</span>
+                            <h5 class="index-card-title">K-Means Clustering</h5>
+                            <p class="index-card-text">
+                                Unsupervised learning technique that identifies natural groupings in customer data for targeted marketing.
+                            </p>
                         </div>
-                        <div class="col-md-4">
-                            <div class="index-card">
-                                <div class="card-icon-wrapper">
-                                    <i class="bi bi-lightbulb-fill card-icon-bi"></i>
-                                </div>
-                                <span class="feature-tag tag-purple">Application</span>
-                                <h5 class="index-card-title">Business Value</h5>
-                                <p class="index-card-text">
-                                    Enable personalized marketing strategies, optimize product offerings, and improve customer retention.
-                                </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="index-card">
+                            <div class="card-icon-wrapper">
+                                <i class="bi bi-lightbulb-fill card-icon-bi"></i>
                             </div>
+                            <span class="feature-tag tag-purple">Application</span>
+                            <h5 class="index-card-title">Business Value</h5>
+                            <p class="index-card-text">
+                                Enable personalized marketing strategies, optimize product offerings, and improve customer retention.
+                            </p>
                         </div>
                     </div>
                 </div>
