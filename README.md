@@ -1,3 +1,7 @@
+![Python](https://img.shields.io/badge/python-3.8+-blue)
+![Flask](https://img.shields.io/badge/flask-2.0+-green)
+![scikit-learn](https://img.shields.io/badge/sklearn-ML-orange)
+
 # WAOW Season 6 - Day 2: AI Powered Web App
 
 Aplikasi web berbasis Flask yang mengintegrasikan Machine Learning untuk prediksi harga rumah (Regression) dan segmentasi pelanggan (Clustering) dengan antarmuka web modern.
