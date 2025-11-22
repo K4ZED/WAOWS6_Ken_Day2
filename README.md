@@ -282,11 +282,11 @@ http://127.0.0.1:5000
   }
   
   // Response
-  {
-    "success": true,
-    "data": 4.35
-  }
-  // Note: data 4.35 = $435,000
+    {
+    "data": 2.8808491734947523,
+    "success": true
+    }
+
   ```
 
 #### 3. API Clustering
