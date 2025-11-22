@@ -28,7 +28,7 @@ Sebelum menjalankan aplikasi, pastikan Anda telah menginstal:
 
 1. **Clone repositori**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/K4ZED/WAOWS6_Ken_Day2.git
    cd WAOWS6_KEN_DAY2
    ```
 
