@@ -415,10 +415,6 @@ Proyek ini dibuat sebagai bagian dari Workshop WAOW Season 6 - Day 2.
 - [scikit-learn Documentation](https://scikit-learn.org/)
 - [Bootstrap Documentation](https://getbootstrap.com/)
 
-## Lisensi
-
-Proyek ini dibuat untuk keperluan pembelajaran dalam Workshop WAOW Season 6.
-
 ---
 
 **Catatan**: Pastikan untuk selalu menggunakan virtual environment saat development untuk menghindari konflik dependencies.
